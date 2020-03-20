@@ -1,0 +1,7 @@
+.*
+*.md
+*.yml
+pages/
+node_modules/
+components/
+static/
