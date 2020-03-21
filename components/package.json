@@ -1,0 +1,52 @@
+{
+  "_from": "zhilin-picker",
+  "_id": "zhilin-picker@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-gJRECJq9tfgThiBPziOuCaeo4v45R0nsD7/cutCpwAvVPNJqmWWdvKzPmGtf3RB93kRG4AN0qVseqEphQ5OjJA==",
+  "_location": "/zhilin-picker",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "zhilin-picker",
+    "name": "zhilin-picker",
+    "escapedName": "zhilin-picker",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/zhilin-picker/-/zhilin-picker-1.0.1.tgz",
+  "_shasum": "fa142644ef849a0ef49666d04737670a35ba17fc",
+  "_spec": "zhilin-picker",
+  "_where": "/Users/hc101/Documents/HBuilderProjects/test-mypackage",
+  "author": {
+    "name": "lucklin"
+  },
+  "bugs": {
+    "url": "https://github.com/LuckLin520/zhilin-picker/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "uni-app平铺弹层选择器",
+  "homepage": "https://github.com/LuckLin520/zhilin-picker#readme",
+  "keywords": [
+    "uniapp",
+    "picker",
+    "select",
+    "multiple"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "zhilin-picker",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuckLin520/zhilin-picker.git"
+  },
+  "scripts": {},
+  "version": "1.0.2"
+}
