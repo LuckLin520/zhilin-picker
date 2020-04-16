@@ -2,20 +2,24 @@
 	<view class="zhilin-picker">
 		<uni-popup ref="popup" type="top" @change="popupChange">
 			<uni-nav-bar @clickLeft="clickLeft" @clickRight="tapOK" rightText="确定" left-icon="closeempty" :title="title" :border="null"></uni-nav-bar>
-			<uni-search-bar v-if="showSearch && data.length" :radius="100" cancelButton="none" @input="inputSearch"></uni-search-bar>
+			<view class="usb">
+				<uni-search-bar v-if="showSearch && data.length" :radius="100" cancelButton="none" @input="inputSearch"></uni-search-bar>
+			</view>
 			<view class="main" v-if="list.length">
 				<scroll-view scroll-y="true" @scrolltolower="lower" :lower-threshold="1">
 					<view class="scroll-view-item" v-for="(v,i) in list" :key="i" @tap="tapItem(v.value)" :class="selected.indexOf(v.value)>-1?'selected':null">
 						<text>{{v.label}}</text>
 						<icon v-show="selected.indexOf(v.value)>-1" type="success_no_circle" size="22" />
 					</view>
-					<view v-show="showBottom" class="isBottom">已经到底啦~</view>
+					<view v-if="showBottom" class="isBottom">已经到底啦~</view>
 				</scroll-view>
 				<view class="loadingBox" v-show="loading">
 					<uni-load-more status="loading"></uni-load-more>
 				</view>
 			</view>
-			<xw-empty v-else text="暂无选项" textColor="#777777"></xw-empty>
+			<view v-else class="empty">
+				<xw-empty text="暂无选项" textColor="#777777"></xw-empty>
+			</view>
 		</uni-popup>
 	</view>
 </template>
@@ -77,6 +81,7 @@
 			},
 			data(n, o) {
 				this.loading = false
+				this.showBottom = false
 				this.dataInit()
 			}
 		},
@@ -119,13 +124,13 @@
 				this.$emit("input", e.show)
 			},
 			inputSearch(e){
-				this.showBottom = false
 				let val = e.value
 				if(this.searchInput){
 					this.loading = true
 					this.searchInput(val)
 					return
 				}
+				this.showBottom = false
 				if(typeof this.data[0] == 'string'){
 					this.list = this.data.filter(v=> v.indexOf(val)>-1).map((v, i) => ({
 						label: v,
@@ -140,9 +145,9 @@
 </script>
 
 <style lang="scss" scoped>
+	/* #ifdef H5 || APP-PLUS*/
 	.zhilin-picker {
 		font-size: 28rpx;
-
 		/deep/ .uni-popup__wrapper-box {
 			background: #fff;
 			height: 1056rpx;
@@ -181,6 +186,7 @@
 						justify-content: center;
 						color: #777;
 						position: relative;
+						font-size: 24rpx;
 						&::after{
 							content: '';
 							position: absolute;
@@ -212,28 +218,94 @@
 					}
 				}
 			}
-			
-			.footer {
-				position: absolute;
-				bottom: 0;
+		}
+	}
+	/* #endif */
+	
+	/* #ifndef H5 */
+	.zhilin-picker{
+		font-size: 28rpx;
+		uni-popup /deep/ .uni-popup{
+				width: 750rpx;
+				background: #fff;
+				height: 1056rpx;
+				overflow: hidden;
 				display: flex;
-				width: 100%;
-
-				uni-button {
-					flex: 1;
-					border-radius: 0;
-					font-size: 34rpx;
+				flex-direction: column;
+			}
+		uni-popup {
+			.usb{
+				padding: 0 32rpx;
+				background: #fff;
+			}
+			.main {
+				height: calc(1056rpx - 192rpx);
+				flex: 1;
+				position: relative;
+				background: #fff;
+				scroll-view {
+					height: 100%;
+		
+					.scroll-view-item {
+						box-sizing: border-box;
+						padding: 18rpx 44rpx;
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						min-height: 80rpx;
+		
+						&.selected {
+							background: rgba($uni-color-primary, .1);
+						}
+		
+						uni-text {
+							width: 85%;
+						}
+					}
+					.isBottom{
+						display: flex;
+						justify-content: center;
+						color: #777;
+						position: relative;
+						padding: 18rpx 44rpx;
+						font-size: 24rpx;
+						&::after{
+							content: '';
+							position: absolute;
+							bottom: 10rpx;
+							width: 60rpx;
+							height: 4rpx;
+							left: 50%;
+							transform: translateX(-51%);
+							background: #777;
+						}
+					}
 				}
-
-				uni-button:after {
-					border-radius: 0;
+				.loadingBox{
+					height: 100%;
+					width: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					background: rgba(255,255,255,.7);
+					z-index: 2;
+					uni-load-more{
+						display: flex;
+						justify-content: center;
+						position: absolute;
+						width: 100%;
+						top: 35%;
+						left: 50%;
+						transform: translate(-50%);
+					}
 				}
 			}
+			
+			.empty{
+				height: calc(1056rpx - 192rpx);
+				background: #fff;
+			}
 		}
-
-		/deep/ .uni-navbar__content_view .uni-icons {
-			font-size: 66rpx !important;
-		}
-
 	}
+	/* #endif */
 </style>

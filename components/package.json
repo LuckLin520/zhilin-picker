@@ -1,6 +1,6 @@
 {
   "_from": "zhilin-picker",
-  "_id": "zhilin-picker@1.0.4",
+  "_id": "zhilin-picker@1.0.5",
   "_inBundle": false,
   "_integrity": "sha512-SY8QuQCdIZwMZd3f4nSfMu9pGET3wEhSzujSpdhXXzxQ8wPotNOOLLxhVGuIm+IzV/wb/T5nJ5824e1nqDRbOA==",
   "_location": "/zhilin-picker",
@@ -48,5 +48,5 @@
     "url": "git+https://github.com/LuckLin520/zhilin-picker.git"
   },
   "scripts": {},
-  "version": "1.0.4"
+  "version": "1.0.5"
 }
