@@ -1,8 +1,8 @@
 {
   "_from": "zhilin-picker",
-  "_id": "zhilin-picker@1.0.1",
+  "_id": "zhilin-picker@1.0.4",
   "_inBundle": false,
-  "_integrity": "sha512-gJRECJq9tfgThiBPziOuCaeo4v45R0nsD7/cutCpwAvVPNJqmWWdvKzPmGtf3RB93kRG4AN0qVseqEphQ5OjJA==",
+  "_integrity": "sha512-SY8QuQCdIZwMZd3f4nSfMu9pGET3wEhSzujSpdhXXzxQ8wPotNOOLLxhVGuIm+IzV/wb/T5nJ5824e1nqDRbOA==",
   "_location": "/zhilin-picker",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/zhilin-picker/-/zhilin-picker-1.0.1.tgz",
-  "_shasum": "fa142644ef849a0ef49666d04737670a35ba17fc",
+  "_resolved": "https://registry.npmjs.org/zhilin-picker/-/zhilin-picker-1.0.3.tgz",
+  "_shasum": "18b6328ea57709ad64e0689f6c3f12df104b8262",
   "_spec": "zhilin-picker",
-  "_where": "/Users/hc101/Documents/HBuilderProjects/test-mypackage",
+  "_where": "/Users/hc101/Documents/HBuilderProjects/uni-test",
   "author": {
     "name": "lucklin"
   },
@@ -48,5 +48,5 @@
     "url": "git+https://github.com/LuckLin520/zhilin-picker.git"
   },
   "scripts": {},
-  "version": "1.0.3"
+  "version": "1.0.4"
 }

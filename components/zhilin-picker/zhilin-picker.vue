@@ -139,22 +139,22 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.zhilin-picker {
-		font-size: 28upx;
+		font-size: 28rpx;
 
 		/deep/ .uni-popup__wrapper-box {
 			background: #fff;
-			height: 1056upx;
+			height: 1056rpx;
 			overflow: hidden;
 			display: flex;
 			flex-direction: column;
 			.uni-searchbar{
-				padding: 16upx 48upx;
+				padding: 16rpx 48rpx;
 			}
 			
 			.main {
-				height: calc(100% - 88upx - 104upx);
+				height: calc(100% - 88rpx - 104rpx);
 				flex: 1;
 				position: relative;
 				scroll-view {
@@ -162,11 +162,11 @@
 
 					uni-view {
 						box-sizing: border-box;
-						padding: 18upx 44upx;
+						padding: 18rpx 44rpx;
 						display: flex;
 						justify-content: space-between;
 						align-items: center;
-						min-height: 80upx;
+						min-height: 80rpx;
 
 						&.selected {
 							background: rgba($uni-color-primary, .1);
@@ -184,9 +184,9 @@
 						&::after{
 							content: '';
 							position: absolute;
-							bottom: 10upx;
-							width: 60upx;
-							height: 4upx;
+							bottom: 10rpx;
+							width: 60rpx;
+							height: 4rpx;
 							left: 50%;
 							transform: translateX(-51%);
 							background: #777;
@@ -222,7 +222,7 @@
 				uni-button {
 					flex: 1;
 					border-radius: 0;
-					font-size: 34upx;
+					font-size: 34rpx;
 				}
 
 				uni-button:after {
@@ -232,7 +232,7 @@
 		}
 
 		/deep/ .uni-navbar__content_view .uni-icons {
-			font-size: 66upx !important;
+			font-size: 66rpx !important;
 		}
 
 	}
