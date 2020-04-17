@@ -3,7 +3,7 @@
 		<uni-popup ref="popup" type="top" @change="popupChange">
 			<uni-nav-bar @clickLeft="clickLeft" @clickRight="tapOK" rightText="确定" left-icon="closeempty" :title="title" :border="null"></uni-nav-bar>
 			<view class="usb">
-				<uni-search-bar v-if="showSearch && data.length" :radius="100" cancelButton="none" @input="inputSearch"></uni-search-bar>
+				<uni-search-bar v-if="showSearch && data.length" :radius="100" cancelButton="none" v-model="searchVal"></uni-search-bar>
 			</view>
 			<view class="main" v-if="list.length">
 				<scroll-view scroll-y="true" @scrolltolower="lower" :lower-threshold="1">
@@ -68,7 +68,8 @@
 				list: [],
 				selected: [],
 				showBottom: false,
-				loading: false
+				loading: false,
+				searchVal: ''
 			}
 		},
 		created() {
@@ -83,6 +84,9 @@
 				this.loading = false
 				this.showBottom = false
 				this.dataInit()
+			},
+			searchVal(){
+				this.inputSearch()
 			}
 		},
 		methods: {
@@ -104,14 +108,14 @@
 				this.$emit("input", false)
 			},
 			tapItem(val) {
-				if(this.multiple){
+				if (this.multiple) {
 					let idx = this.selected.indexOf(val)
 					if (idx == -1) {
 						this.selected.push(val)
 					} else {
 						this.selected.splice(idx, 1)
 					}
-				}else{
+				} else {
 					this.selected = [val]
 				}
 				this.$emit("change", this.selected.join())
@@ -123,8 +127,8 @@
 			popupChange(e) {
 				this.$emit("input", e.show)
 			},
-			inputSearch(e){
-				let val = e.value
+			inputSearch() {
+				let val = this.searchVal
 				if(this.searchInput){
 					this.loading = true
 					this.searchInput(val)
@@ -148,20 +152,23 @@
 	/* #ifdef H5 || APP-PLUS*/
 	.zhilin-picker {
 		font-size: 28rpx;
+
 		/deep/ .uni-popup__wrapper-box {
 			background: #fff;
 			height: 1056rpx;
 			overflow: hidden;
 			display: flex;
 			flex-direction: column;
-			.uni-searchbar{
+
+			.uni-searchbar {
 				padding: 16rpx 48rpx;
 			}
-			
+
 			.main {
 				height: calc(100% - 88rpx - 104rpx);
 				flex: 1;
 				position: relative;
+
 				scroll-view {
 					height: 100%;
 
@@ -181,13 +188,15 @@
 							width: 85%;
 						}
 					}
-					.isBottom{
+
+					.isBottom {
 						display: flex;
 						justify-content: center;
 						color: #777;
 						position: relative;
 						font-size: 24rpx;
-						&::after{
+
+						&::after {
 							content: '';
 							position: absolute;
 							bottom: 10rpx;
@@ -199,15 +208,17 @@
 						}
 					}
 				}
-				.loadingBox{
+
+				.loadingBox {
 					height: 100%;
 					width: 100%;
 					position: absolute;
 					top: 0;
 					left: 0;
-					background: rgba(255,255,255,.7);
+					background: rgba(255, 255, 255, .7);
 					z-index: 2;
-					.uni-load-more{
+
+					.uni-load-more {
 						display: flex;
 						justify-content: center;
 						position: absolute;
@@ -220,32 +231,37 @@
 			}
 		}
 	}
+
 	/* #endif */
-	
+
 	/* #ifndef H5 */
-	.zhilin-picker{
+	.zhilin-picker {
 		font-size: 28rpx;
-		uni-popup /deep/ .uni-popup{
-				width: 750rpx;
-				background: #fff;
-				height: 1056rpx;
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-			}
+
+		uni-popup /deep/ .uni-popup {
+			width: 750rpx;
+			background: #fff;
+			height: 1056rpx;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+		}
+
 		uni-popup {
-			.usb{
+			.usb {
 				padding: 0 32rpx;
 				background: #fff;
 			}
+
 			.main {
 				height: calc(1056rpx - 192rpx);
 				flex: 1;
 				position: relative;
 				background: #fff;
+
 				scroll-view {
 					height: 100%;
-		
+
 					.scroll-view-item {
 						box-sizing: border-box;
 						padding: 18rpx 44rpx;
@@ -253,23 +269,25 @@
 						justify-content: space-between;
 						align-items: center;
 						min-height: 80rpx;
-		
+
 						&.selected {
 							background: rgba($uni-color-primary, .1);
 						}
-		
+
 						uni-text {
 							width: 85%;
 						}
 					}
-					.isBottom{
+
+					.isBottom {
 						display: flex;
 						justify-content: center;
 						color: #777;
 						position: relative;
 						padding: 18rpx 44rpx;
 						font-size: 24rpx;
-						&::after{
+
+						&::after {
 							content: '';
 							position: absolute;
 							bottom: 10rpx;
@@ -281,15 +299,17 @@
 						}
 					}
 				}
-				.loadingBox{
+
+				.loadingBox {
 					height: 100%;
 					width: 100%;
 					position: absolute;
 					top: 0;
 					left: 0;
-					background: rgba(255,255,255,.7);
+					background: rgba(255, 255, 255, .7);
 					z-index: 2;
-					uni-load-more{
+
+					uni-load-more {
 						display: flex;
 						justify-content: center;
 						position: absolute;
@@ -300,12 +320,13 @@
 					}
 				}
 			}
-			
-			.empty{
+
+			.empty {
 				height: calc(1056rpx - 192rpx);
 				background: #fff;
 			}
 		}
 	}
+
 	/* #endif */
 </style>

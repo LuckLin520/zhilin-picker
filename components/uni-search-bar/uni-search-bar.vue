@@ -9,14 +9,13 @@
 			<!-- #ifndef MP-ALIPAY -->
 			<uni-icons color="#999999" class="uni-searchbar__box-icon-search" size="18" type="search" />
 			<!-- #endif -->
-			<input v-if="show" :focus="showSync" :placeholder="placeholder" :maxlength="maxlength" @confirm="confirm" class="uni-searchbar__box-search-input"
-			 confirm-type="search" type="text" v-model="searchVal" />
+			<input v-if="show" :focus="focus" :placeholder="placeholder" :maxlength="maxlength" class="uni-searchbar__box-search-input"
+			 confirm-type="search" type="text" :value="value" @input="$emit('input', $event.target.value)" @blur="blur"/>
 			<text v-else class="uni-searchbar__text-placeholder">{{ placeholder }}</text>
-			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&searchVal!=='')" class="uni-searchbar__box-icon-clear" @click="clear">
+			<view v-if="show && (clearButton==='always'||clearButton==='auto'&&value!=='')" class="uni-searchbar__box-icon-clear" @click="clear">
 				<uni-icons color="#999999" class="" size="24" type="clear" />
 			</view>
 		</view>
-		<text @click="cancel" class="uni-searchbar__cancel" v-if="cancelButton ==='always' || show && cancelButton ==='auto'">{{cancelText}}</text>
 	</view>
 </template>
 
@@ -55,20 +54,15 @@
 			maxlength: {
 				type: [Number, String],
 				default: 100
+			},
+			value: {
+				type: String,
 			}
 		},
 		data() {
 			return {
-				show: false,
-				showSync: false,
-				searchVal: ""
-			}
-		},
-		watch: {
-			searchVal() {
-				this.$emit("input", {
-					value: this.searchVal
-				})
+				show: this.value?true:false,
+				focus: false
 			}
 		},
 		methods: {
@@ -76,39 +70,18 @@
 				if (this.show) {
 					return
 				}
-				this.searchVal = ""
 				this.show = true;
-				this.$nextTick(() => {
-					this.showSync = true;
-				})
+				this.focus = true;
 			},
 			clear() {
-				this.searchVal = ""
+				this.$emit("input", '')
+				setTimeout(()=>{
+					this.show = false
+				}, 0)
 			},
-			cancel() {
-				this.$emit("cancel", {
-					value: this.searchVal
-				});
-				this.searchVal = ""
-				this.show = false
-				this.showSync = false
-				// #ifndef APP-PLUS
-				uni.hideKeyboard()
-				// #endif
-				// #ifdef APP-PLUS
-				plus.key.hideSoftKeybord()
-				// #endif
-			},
-			confirm() {
-				// #ifndef APP-PLUS
-				uni.hideKeyboard();
-				// #endif
-				// #ifdef APP-PLUS
-				plus.key.hideSoftKeybord()
-				// #endif
-				this.$emit("confirm", {
-					value: this.searchVal
-				})
+			blur(){
+				this.focus = false
+				if(!this.value) this.show = false
 			}
 		}
 	};
