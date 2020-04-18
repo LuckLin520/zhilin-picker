@@ -87,6 +87,9 @@
 			},
 			searchVal(){
 				this.inputSearch()
+			},
+			initSelected(n){
+				this.selected = n
 			}
 		},
 		methods: {
@@ -102,7 +105,6 @@
 				} else {
 					this.list = this.data
 				}
-				if (this.initSelected) this.selected = JSON.parse(JSON.stringify(this.initSelected))
 			},
 			clickLeft() {
 				this.$emit("input", false)
