@@ -3,6 +3,7 @@
 ```javascript
 	import zhilinPicker from "@/components/zhilin-picker/zhilin-picker.vue"
 	//此插件已发布到npm，你也可以使用npm i zhilin-picker来安装到项目
+	//uniapp官方插件市场https://ext.dcloud.net.cn/plugin?id=1469
 	export default {
 		components:{ zhilinPicker },
 		data() {
